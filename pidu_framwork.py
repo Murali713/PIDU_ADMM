@@ -106,7 +106,6 @@ class PIDU(nn.Module):
         self.register_buffer('freq_bins', torch.fft.rfftfreq(N, d=1/fs))
         self.alpha_raw = nn.Parameter(torch.tensor(0.0))
         self.tau_raw = nn.Parameter(torch.tensor(0.0))
-        # init beta higher so physics-guided prior actively pulls omega toward fo,fi,fb early in training
         beta_raw_init = np.log(np.exp(beta_init)-1) if beta_init>0 else 0.0
         self.beta_raw = nn.Parameter(torch.tensor(float(beta_raw_init)))
         self.b_km = nn.Parameter(torch.zeros(K,3))
